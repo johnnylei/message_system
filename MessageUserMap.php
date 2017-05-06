@@ -1,5 +1,5 @@
 <?php
-namespace johnnyLei\message_system;
+namespace johnnylei\message_system;
 use Yii;
 use yii\base\Event;
 use yii\base\Exception;

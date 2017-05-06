@@ -6,11 +6,11 @@
  * Time: 下午12:01
  */
 
-namespace johnnyLei\message_system;
+namespace johnnylei\message_system;
 
 
 use yii\data\Pagination;
-use johnnyLei\message_system\Message;
+use johnnylei\message_system\Message;
 use yii\base\Component;
 use yii\base\Exception;
 use Yii;

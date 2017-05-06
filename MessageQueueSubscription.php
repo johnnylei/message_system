@@ -6,7 +6,7 @@
  * Time: 上午11:54
  */
 
-namespace johnnyLei\message_system;
+namespace johnnylei\message_system;
 
 use Yii;
 use yii\base\Exception;

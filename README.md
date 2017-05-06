@@ -12,7 +12,7 @@ composer require --prefer-dist johnnylei/message-system
 ### 配置文件
 ```
 'messageManager'=>[
-    'class'=>'johnnyLei\message_system\MessageManager',
+    'class'=>'johnnylei\message_system\MessageManager',
     // userInformation 是一个用户表的activeRecord,主要作用当你发送消息的时候，将用户表里面的消息总数＋１，当你阅读完消息的时候，将用户表里面的消息数－１，
     // 通过实现UserInformationInterface,里面的两个方法
     'userInformation'=>[

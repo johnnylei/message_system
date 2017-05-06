@@ -1,5 +1,5 @@
 <?php
-namespace johnnyLei\message_system;
+namespace johnnylei\message_system;
 
 /**
  * Created by PhpStorm.

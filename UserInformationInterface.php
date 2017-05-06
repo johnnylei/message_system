@@ -6,7 +6,7 @@
  * Time: 上午11:05
  */
 
-namespace johnnyLei\message_system;
+namespace johnnylei\message_system;
 
 
 interface UserInformationInterface

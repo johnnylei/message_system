@@ -6,7 +6,7 @@
  * Time: 下午12:04
  */
 
-namespace johnnyLei\message_system;
+namespace johnnylei\message_system;
 
 
 use yii\base\Event;
