@@ -3,7 +3,7 @@
   "description": "Yii2 message system",  
   "keywords": [  
     "yii2",  
-    "message",
+    "message"
   ],  
   "homepage": "https://github.com/johnnylei/message_system.git",  
   "type": "yii2-extension",  
