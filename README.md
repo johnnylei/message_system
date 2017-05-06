@@ -3,7 +3,7 @@
 
 ## install
 ```
-composer require johnnylei/message-system
+composer require --prefer-dist johnnylei/message-system
 ```
 
 ## usage
