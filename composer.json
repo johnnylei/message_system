@@ -1,0 +1,33 @@
+{  
+  "name": "johnnylei/message-system",  
+  "description": "Yii2 message system",  
+  "keywords": [  
+    "yii2",  
+    "message"
+  ],  
+  "homepage": "https://github.com/johnnylei/message_system.git",  
+  "type": "yii2-extension",  
+  "license": "MIT",  
+  "support": {  
+    "source": "https://github.com/johnnylei/message_system.git"  
+  },  
+  "authors": [  
+    {  
+      "name": "johnny Lei",  
+      "email": "leiyuqing_jing@163.com"  
+    }  
+  ],  
+  "minimum-stability": "stable",  
+  "require": {  
+    "php": ">=5.4.0",  
+    "yiisoft/yii2": ">=2.0.6"
+  },  
+  "autoload": {  
+    "psr-4": {  
+      "johnnylei\\message_system\\": ""  
+    }  
+  },  
+  "config": {  
+    "process-timeout": 1800  
+  }  
+}
