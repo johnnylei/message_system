@@ -9,14 +9,15 @@
 namespace johnnyLei\message_system;
 
 
-use common\widgets\pagination\Pagination;
-use frontend\modules\account\models\Message;
+use yii\data\Pagination;
+use johnnyLei\message_system\Message;
 use yii\base\Component;
 use yii\base\Exception;
 use Yii;
 
 class MessageManager extends Component
 {
+    public $baseRecord;
     public $userInformation;
 
     const CreateTimeDesc = 1;
@@ -26,6 +27,10 @@ class MessageManager extends Component
     const AfterSendMessage = 'afterSendMessage';
 
     const SystemMessageQueue = 'SystemMessageQueue';  // 系统消息队列
+
+    public function init() {
+        $this->baseRecord = Yii::$container->get($this->baseRecord);
+    }
 
     public function beforeSendMessage($event) {
         $this->trigger(self::BeforeSendMessage, $event);
@@ -114,7 +119,7 @@ class MessageManager extends Component
                 't2.checked_time',
                 't2.id primary_id'
             ])->alias('t1')
-            ->leftJoin(BaseRecord::MessageUserMap . ' t2', 't1.id = t2.message_id')
+            ->leftJoin($this->baseRecord->messageUserMap. ' t2', 't1.id = t2.message_id')
             ->andWhere(['t2.user_id'=>Yii::$app->getUser()->getId()]);
 
         $pagination = new Pagination([
@@ -173,7 +178,7 @@ class MessageManager extends Component
             return ;
         }
 
-        $userInformation = new $this->userInformation;
+        $userInformation = Yii::$container->get($this->userInformation);
         if(!$userInformation instanceof UserInformationInterface) {
             $e->isValidate = false;
             throw new Exception('invalid user information');
@@ -189,7 +194,7 @@ class MessageManager extends Component
             return ;
         }
 
-        $userInformation = new $this->userInformation;
+        $userInformation = Yii::$container->get($this->userInformation);
         if(!$userInformation instanceof UserInformationInterface) {
             $e->isValidate = false;
             throw new Exception('invalid user information');
@@ -207,7 +212,7 @@ class MessageManager extends Component
             't2.checked_time',
             't2.id primary_id'
         ])->alias('t1')
-            ->leftJoin(BaseRecord::MessageUserMap . ' t2', 't1.id = t2.message_id')
+            ->leftJoin($this->baseRecord->messageUserMap . ' t2', 't1.id = t2.message_id')
             ->andWhere([
                 'and',
                 ['t2.user_id'=>Yii::$app->getUser()->getId()],
