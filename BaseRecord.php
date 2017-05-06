@@ -10,9 +10,9 @@ use yii\db\ActiveRecord;
  */
 class BaseRecord extends ActiveRecord
 {
-    const MessageTable = 'message';
-    const MessageQueueSubscription = 'message_queue_subscription';
-    const MessageUserMap = 'message_user_map';
+    public $messageTable = 'message';
+    public $messageQueueSubscription =  'message_queue_subscription';
+    public $messageUserMap = 'message_user_map';
 
     public function loadData($formData, $record) {
         $attributes = $this->attributes();

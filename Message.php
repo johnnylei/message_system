@@ -11,7 +11,7 @@ class Message extends BaseRecord
 {
     public static function tableName()
     {
-        return self::MessageTable;
+        return $this->messageTable;
     }
 
     public function attributes()

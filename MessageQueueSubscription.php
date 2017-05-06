@@ -15,7 +15,7 @@ class MessageQueueSubscription extends BaseRecord
 {
     public static function tableName()
     {
-        return self::MessageQueueSubscription;
+        return $this->messageQueueSubscription;
     }
 
     public function attributes()
