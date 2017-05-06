@@ -17,9 +17,6 @@ composer require johnnylei/message-system
     // 通过实现UserInformationInterface,里面的两个方法
     'userInformation'=>[
         'class'=>'xxx',
-    ],
-    'baseRecord'=>[
-        'class'=>'johnnyLei/mesage_system/BaseRecord',
     ]
 ]
 ```

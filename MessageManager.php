@@ -17,7 +17,6 @@ use Yii;
 
 class MessageManager extends Component
 {
-    public $baseRecord;
     public $userInformation;
 
     const CreateTimeDesc = 1;
@@ -27,10 +26,6 @@ class MessageManager extends Component
     const AfterSendMessage = 'afterSendMessage';
 
     const SystemMessageQueue = 'SystemMessageQueue';  // 系统消息队列
-
-    public function init() {
-        $this->baseRecord = Yii::$container->get($this->baseRecord);
-    }
 
     public function beforeSendMessage($event) {
         $this->trigger(self::BeforeSendMessage, $event);
@@ -119,7 +114,7 @@ class MessageManager extends Component
                 't2.checked_time',
                 't2.id primary_id'
             ])->alias('t1')
-            ->leftJoin($this->baseRecord->messageUserMap. ' t2', 't1.id = t2.message_id')
+            ->leftJoin(BaseRecord::MessageUserMap. ' t2', 't1.id = t2.message_id')
             ->andWhere(['t2.user_id'=>Yii::$app->getUser()->getId()]);
 
         $pagination = new Pagination([
@@ -212,7 +207,7 @@ class MessageManager extends Component
             't2.checked_time',
             't2.id primary_id'
         ])->alias('t1')
-            ->leftJoin($this->baseRecord->messageUserMap . ' t2', 't1.id = t2.message_id')
+            ->leftJoin(BaseRecord::MessageUserMap . ' t2', 't1.id = t2.message_id')
             ->andWhere([
                 'and',
                 ['t2.user_id'=>Yii::$app->getUser()->getId()],

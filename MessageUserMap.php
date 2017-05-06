@@ -31,7 +31,7 @@ class MessageUserMap extends BaseRecord
 
     public static function tableName()
     {
-        return $this->messageUserMap;
+        return self::MessageUserMap;
     }
 
     public function attributes()
