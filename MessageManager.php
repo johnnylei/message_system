@@ -173,7 +173,7 @@ class MessageManager extends Component
             return ;
         }
 
-        $userInformation = Yii::$container->get($this->userInformation);
+        $userInformation = Yii::createObject($this->userInformation);
         if(!$userInformation instanceof UserInformationInterface) {
             $e->isValidate = false;
             throw new Exception('invalid user information');
@@ -189,7 +189,7 @@ class MessageManager extends Component
             return ;
         }
 
-        $userInformation = Yii::$container->get($this->userInformation);
+        $userInformation = Yii::createObject($this->userInformation);
         if(!$userInformation instanceof UserInformationInterface) {
             $e->isValidate = false;
             throw new Exception('invalid user information');
