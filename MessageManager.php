@@ -117,10 +117,16 @@ class MessageManager extends Component
             ->leftJoin(BaseRecord::MessageUserMap. ' t2', 't1.id = t2.message_id')
             ->andWhere(['t2.user_id'=>Yii::$app->getUser()->getId()]);
 
-        $pagination = new Pagination([
-            'totalCount'=>$query->count(),
-            'pageSize'=>$page_size,
-        ]);
+        if(!empty($this->pagination)) {
+            $pagination = Yii::createObject($this->pagination);
+            $pagination->totalCount = $query->count();
+            $pagination->pageSize = $page_size;
+        } else {
+            $pagination = new Pagination([
+                'totalCount'=>$query->count(),
+                'pageSize'=>$page_size,
+            ]);
+        }
 
         $map = [
             self::CreateTimeAsc => [
