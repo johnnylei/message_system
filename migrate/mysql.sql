@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `message_user_map` (
   INDEX `message_id_idx` (`message_id` ASC),
   CONSTRAINT `message_id`
     FOREIGN KEY (`message_id`)
-    REFERENCES `dts_message` (`id`)
+    REFERENCES `message` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB charset utf8;

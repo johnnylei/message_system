@@ -46,7 +46,7 @@ class MessageManager extends Component
         if(!is_array($message)) {
             throw new Exception('$message should be array');
         }
-        
+
         if (!isset($message['title']) || empty($message['title'])) {
             throw new Exception('$message title be set');
         }
@@ -55,8 +55,8 @@ class MessageManager extends Component
             throw new Exception('$message body be set');
         }
 
-        if (!is_string($queue)) {
-            throw new Exception('$queue should be string');
+        if (!is_array($queue)) {
+            $queue = [$queue];
         }
 
         $transaction = Yii::$app->db->beginTransaction();
@@ -67,9 +67,8 @@ class MessageManager extends Component
             }
 
             $formData = $message + [
-                'queue_id'=>$queue,
-                'create_time'=>time(),
-            ];
+                    'create_time'=>time(),
+                ];
             // 生成消息体
             $messageRecord = new Message();
             if(!$messageRecord->insertRecord($formData)) {
@@ -78,7 +77,10 @@ class MessageManager extends Component
 
             // 获取订阅这个消息队列的用户
             $subscription = new MessageQueueSubscription();
-            $subscribers = $subscription->getSubscriber($queue);
+            $subscribers = [];
+            foreach ($queue as $item) {
+                $subscribers = array_merge($subscribers, $subscription->getSubscriber($item));
+            }
 
             // 分发消息
             $messageUserMap = new MessageUserMap();
@@ -109,11 +111,11 @@ class MessageManager extends Component
 
     public function myMessageList($order_by = null, $page_size = 10) {
         $query = Message::find()->select([
-                't1.*',
-                't2.checked',
-                't2.checked_time',
-                't2.id primary_id'
-            ])->alias('t1')
+            't1.*',
+            't2.checked',
+            't2.checked_time',
+            't2.id primary_id'
+        ])->alias('t1')
             ->leftJoin(BaseRecord::MessageUserMap. ' t2', 't1.id = t2.message_id')
             ->andWhere(['t2.user_id'=>Yii::$app->getUser()->getId()]);
 

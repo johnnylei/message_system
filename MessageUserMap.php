@@ -50,6 +50,8 @@ class MessageUserMap extends BaseRecord
             if(!$event->isValidate) {
                 throw new Exception('before insert message failed');
             }
+            $this->setOldAttribute('message_id', null);
+            $this->setOldAttribute('user_id', null);
             $this->insert();
             $this->trigger(self::AfterInsertMessage, $event);
             if(!$event->isValidate) {
