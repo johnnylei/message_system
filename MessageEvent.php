@@ -8,7 +8,6 @@
 
 namespace johnnylei\message_system;
 
-
 use yii\base\Event;
 
 class MessageEvent extends Event
